@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color:#0bd7a9;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0bd7a9;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <ul>
+        <li><a href="{{ url_for('create_event') }}">Create Event</a></li>
+        <li><a href="{{ url_for('events_moderation') }}">Events Moderation</a></li>
+        <li><a href="{{ url_for('create_user') }}">Create User</a></li>
+        <li><a href="{{ url_for('users') }}">Users</a></li>
+        <li><a href="{{ url_for('alle_agendas') }}">All Agendas</a></li>
+        <li><a href="{{ url_for('create_agenda') }}">Create agenda</a></li>
+        <li><a href="{{ url_for('events') }}">All events</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</body>
+</html>

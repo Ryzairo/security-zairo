@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenementen</title>
+    
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        h1 {
+            color: #0bd7a9;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ced4da;
+            padding: 8px;
+            text-align: left;
+            color: white;
+        }
+
+        th {
+            background-color: #0bd7a9;
+            color: #000000;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .shadow {
+            box-shadow: 3px 3px 10px black;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .page-header {
+            color: #0bd7a9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: white;
+        }
+
+        a {
+            color: #0bd7a9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Evenementen</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Naam</th>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Locatie</th>
+                <th>Beschrijving</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event['id'] }}</td>
+                    <td>{{ event['name'] }}</td>
+                    <td>{{ event['event_date'] }}</td>
+                    <td>{{ event['start_time'] }} - {{ event['end_time'] }}</td>
+                    <td>{{ event['location'] }}</td>
+                    <td>{{ event['description'] }}</td>
+                    <td>
+                        <a href="/edit_event/{{ event.id }}" style="color: #0bd7a9; text-decoration: none;">Bewerken</a>
+
+
+                        
+                        <form action="/delete_event/{{ event['id'] }}" method="POST" style="display: inline;">
+                            <button type="submit" class="delete-btn">Verwijderen</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('events') }}">Terug naar alle evenementen</a>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenementen</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        h1 {
+            color: #0bd7a9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #000000;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px black;
+        }
+
+        h2 {
+            color: #0bd7a9;
+        }
+
+        p {
+            color: white;
+        }
+
+        a {
+            color: #0bd7a9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Evenementen</h1>
+
+    <div class="filter-container">
+        <form action="{{ url_for('events') }}" method="GET">
+            <label for="date-filter">Datum:</label>
+            <input type="date" id="date-filter" name="date">
+
+            <label for="location-filter">Locatie:</label>
+            <input type="text" id="location-filter" name="location">
+
+            <label for="aanmelder-filter">Aanmelder:</label>
+            <input type="text" id="aanmelder-filter" name="aanmelder">
+
+            <button type="submit">Filteren</button>
+        </form>
+    </div>
+    <ul>
+        {% for event in events %}
+            <li>
+                <h2>{{ event['name'] }}</h2>
+                <p><strong>Datum:</strong> {{ event['event_date'] }}</p>
+                <p><strong>Tijd:</strong> {{ event['start_time'] }} - {{ event['end_time'] }}</p>
+                <p><strong>Locatie:</strong> {{ event['location'] }}</p>
+                <p><strong>Aanmelder:</strong> {{ event['aanmelder'] }}</p>
+                <p><strong>Beschrijving:</strong> {{ event['description'] }}</p>
+            </li>
+            
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('alle_agendas') }}">Terug naar alle agenda's</a>
+    <button class="next-button" onclick="window.location.href='{{ url_for('events', page=2) }}'">Volgende 20 evenementen</button>
+</body>
+</html>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>

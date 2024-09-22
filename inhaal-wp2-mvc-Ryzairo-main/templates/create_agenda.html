@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Agenda</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0bd7a9;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .shadow {
+            box-shadow: 3px 3px 10px black;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .page-header {
+            color: #0bd7a9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #000000;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="checkbox"],
+        input[type="submit"],
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 0;
+        }
+
+        input[type="submit"] {
+            background-color: #0bd7a9;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .alert {
+            margin-top: 10px;
+        }
+
+        .shadow {
+            box-shadow: 3px 3px 10px black;
+            padding: 30px;
+        }
+
+        .event-list {
+            margin-top: 20px;
+        }
+
+        .event-item {
+            margin-bottom: 10px;
+        }
+
+        .event-actions {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top:100px">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="col-md-offset-3 col-md-5">
+                
+                <div class="shadow" id="createAgendaForm">
+                    <form action="/create_agenda" method="POST" autocomplete="off">
+                        <h3 class="page-header text-primary">Create Agenda</h3>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+
+                        <div class="form-group">
+                            <label>Agenda Title</label>
+                            <input type="text" name="agenda_title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>URL Name</label>
+                            <input type="text" name="agenda_url" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Style Sheet URL (Optional)</label>
+                            <input type="text" name="external_stylesheet" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create Agenda" class="btn btn-success btn-block">
+                        </div>
+                    </form>
+                </div>
+
+                
+                
+
+                    
+                    <a href="/alle_agendas" class="btn btn-secondary">Terug naar alle agenda's</a>
+                    
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
